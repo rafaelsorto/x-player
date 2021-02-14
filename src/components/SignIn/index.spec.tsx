@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from '../../../test/testUtils'
+import { render } from 'test/testUtils'
 import { SignIn } from './'
 
 describe('SignIn', () => {
