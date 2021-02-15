@@ -4,7 +4,14 @@ import { SignIn } from './'
 
 describe('SignIn', () => {
   it('renders SignIn component', () => {
-    const { getByTestId } = render(<SignIn />, {})
+    const { getByTestId } = render(
+      <SignIn
+        onSubmit={() => {
+          return
+        }}
+      />,
+      {}
+    )
     expect(getByTestId('sign-in')).toBeDefined()
   })
 })
