@@ -11,6 +11,8 @@ const breakpoints = createBreakpoints({
 })
 
 const theme = extendTheme({
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   breakpoints,
 })
 
