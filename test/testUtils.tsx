@@ -1,11 +1,11 @@
-import React from 'react'
-import { render, RenderResult } from '@testing-library/react'
+import React, { ReactElement } from 'react'
+import { render, RenderOptions, RenderResult } from '@testing-library/react'
 
 const AllTheProviders = ({ children }) => {
   return <>{children}</>
 }
 
-const customRender = (ui, options): RenderResult =>
+const customRender = (ui: ReactElement, options: RenderOptions): RenderResult =>
   render(ui, { wrapper: AllTheProviders, ...options })
 
 // re-export everything
