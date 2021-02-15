@@ -8,6 +8,18 @@ function MyApp({ Component, pageProps }: AppProps): ReactJSXElement {
   return (
     <ChakraProvider resetCSS theme={theme}>
       <Component {...pageProps} />
+      <style jsx global>
+        {`
+          html,
+          body,
+          body > div:first-child,
+          div#__next,
+          div#__next > div {
+            background: #eef1f1;
+            height: 100%;
+          }
+        `}
+      </style>
     </ChakraProvider>
   )
 }

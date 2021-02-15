@@ -6,47 +6,15 @@ import {
   Heading,
   Input,
   Stack,
-  useToast,
 } from '@chakra-ui/react'
 import { Field, Form, Formik } from 'formik'
-import { useRouter } from 'next/dist/client/router'
 import React from 'react'
-import { auth } from 'src/clients/auth'
 
-export const SignIn: React.FC = () => {
-  const toast = useToast()
-  const router = useRouter()
+interface SignInProps {
+  onSubmit: (values, formikBag) => void
+}
 
-  const handleSubmit = async (values, formikBag) => {
-    try {
-      const { user_info } = await auth.login(values)
-      if (user_info.status === 'Active') {
-        router.push('/play')
-      } else {
-        toast({
-          position: 'top',
-          title: 'Account Expired',
-          description: `Your account expired on ${new Date(
-            user_info.exp_date * 1000
-          ).toLocaleDateString()}`,
-          status: 'error',
-          duration: 5000,
-          isClosable: true,
-        })
-      }
-    } catch (error) {
-      toast({
-        position: 'top',
-        title: 'Failed to Login',
-        description: error.message,
-        status: 'error',
-        duration: 5000,
-        isClosable: true,
-      })
-      formikBag.setSubmitting(false)
-    }
-  }
-
+export const SignIn: React.FC<SignInProps> = ({ onSubmit }) => {
   return (
     <Box data-testid="sign-in" maxW="sm" width="100%">
       <Box
@@ -61,7 +29,7 @@ export const SignIn: React.FC = () => {
         </Box>
         <Formik
           initialValues={{ server: '', username: '', password: '' }}
-          onSubmit={handleSubmit}
+          onSubmit={onSubmit}
         >
           <Form>
             <Stack spacing={4}>
