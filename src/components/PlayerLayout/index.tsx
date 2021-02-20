@@ -28,14 +28,14 @@ export const PlayerLayout: React.FC = ({ children }) => {
       h="100vh"
       templateRows={
         playerIsIdle
-          ? { sm: '48px minmax(auto, calc(100% - 48px - 16px))' }
+          ? { sm: '48px calc(100% - 48px - 16px)' }
           : {
               sm: '48px calc(50% - 48px - 16px) calc(50% - 16px)',
-              md: '48px minmax(auto, calc(100% - 48px - 16px))',
+              md: '48px calc(100% - 48px - 16px)',
             }
       }
       templateColumns={
-        playerIsIdle ? { sm: '1fr' } : { sm: '1fr', md: '3fr 1fr' }
+        playerIsIdle ? { sm: '1fr' } : { sm: '1fr', md: '3fr 2fr' }
       }
       gap="16px"
     >
