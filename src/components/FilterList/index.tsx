@@ -2,9 +2,9 @@ import React, { useMemo } from 'react'
 import { filter as rFilter } from 'ramda'
 import { Wrap, WrapItem } from '@chakra-ui/react'
 
-export const FilterList = ({ filter, keyExtractor, items }) => {
-  const filteredItems: Category[] = useMemo((): Category[] => {
-    return rFilter(filter)(items) as Category[]
+export const FilterList = ({ filter, keyExtractor, items, Item }) => {
+  const filteredItems: any = useMemo((): any => {
+    return rFilter(filter)(items) as any
   }, [filter, items])
 
   return (
@@ -18,7 +18,7 @@ export const FilterList = ({ filter, keyExtractor, items }) => {
           padding={2}
           width={{ sm: '100%', md: '49%', lg: '33%', xl: '24.5%' }}
         >
-          {item.category_name}
+          <Item item={item} />
         </WrapItem>
       ))}
     </Wrap>
