@@ -4,7 +4,7 @@ import { Wrap, WrapItem } from '@chakra-ui/react'
 
 export const FilterList = ({ filter, keyExtractor, items }) => {
   const filteredItems: Category[] = useMemo((): Category[] => {
-    return rFilter(filter)(items)
+    return rFilter(filter)(items) as Category[]
   }, [filter, items])
 
   return (

@@ -9,6 +9,10 @@ interface LiveStreamCategoriesProps {
   account: any
 }
 
+const Item: React.FC<Category> = ({ category_name }) => (
+  <span>{category_name}</span>
+)
+
 export const LiveStreamCategories: React.FC<LiveStreamCategoriesProps> = ({
   account,
 }) => {
@@ -51,6 +55,7 @@ export const LiveStreamCategories: React.FC<LiveStreamCategoriesProps> = ({
         filter={filterCategories(filter)}
         keyExtractor={prop('category_id')}
         items={data}
+        Item={Item}
       />
     </VStack>
   )
