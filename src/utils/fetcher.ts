@@ -1,6 +1,6 @@
 import Axios from 'axios'
 
-const axios = Axios.create({ baseURL: 'https://x-player.vercel.app/api' })
+const axios = Axios.create({ baseURL: process.env.NEXT_PUBLIC_API_BASE_URL })
 
 export const fetcher = (
   url: string,

@@ -26,11 +26,14 @@ export const auth = {
     username,
   }: LoginRequestProps): Promise<LoginResponse> {
     try {
-      const { data } = await axios.post('/api/auth/login', {
-        password,
-        server,
-        username,
-      })
+      const { data } = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/login`,
+        {
+          password,
+          server,
+          username,
+        }
+      )
 
       return data
     } catch (error) {
