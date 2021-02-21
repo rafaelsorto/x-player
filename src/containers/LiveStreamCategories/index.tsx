@@ -1,6 +1,7 @@
 import { Heading, Input, VStack } from '@chakra-ui/react'
+import { useNextQueryState } from 'src/hooks/generic/useNextQueryState'
 import { prop } from 'ramda'
-import React, { useCallback, useState } from 'react'
+import React, { useCallback } from 'react'
 import { ErrorMessage, FilterList, Loading } from 'src/components'
 import { useLiveStreamCategories } from 'src/hooks/xtreamAPI/useLiveStreamCategories'
 import { filterCategories } from 'src/utils/filterCategories'
@@ -17,7 +18,7 @@ export const LiveStreamCategories: React.FC<LiveStreamCategoriesProps> = ({
   account,
 }) => {
   const { username, password, server } = account
-  const [filter, setFilter] = useState('')
+  const [filter, setFilter] = useNextQueryState('filter')
   const { data, isLoading, error } = useLiveStreamCategories({
     username,
     password,
@@ -49,10 +50,10 @@ export const LiveStreamCategories: React.FC<LiveStreamCategoriesProps> = ({
       <Input
         placeholder="Search Categories"
         onChange={handleFilter}
-        value={filter}
+        value={filter ?? ''}
       />
       <FilterList
-        filter={filterCategories(filter)}
+        filter={filterCategories(filter ?? '')}
         keyExtractor={prop('category_id')}
         items={data}
         Item={Item}
