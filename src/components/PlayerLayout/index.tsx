@@ -14,7 +14,7 @@ const PlayerSection = (props) => (
     boxShadow="md"
     maxHeight="100%"
     overflow="auto"
-    padding={4}
+    padding={2}
     position="relative"
     {...props}
   />
@@ -30,12 +30,12 @@ export const PlayerLayout: React.FC<PlayerLayoutProps> = ({
       templateRows={
         showPlayer
           ? {
-              sm: '48px calc(40% - 48px - 16px) calc(60% - 16px)',
+              sm: '48px calc(40% - 48px - 8px) calc(60% - 8px)',
             }
-          : { sm: '48px calc(100% - 48px - 16px)' }
+          : { sm: '48px calc(100% - 48px - 8px)' }
       }
       templateColumns="1fr"
-      gap="16px"
+      gap="8px"
     >
       <PlayerSection p={0} px={4} display="flex" alignItems="center">
         <TopNavbar />
