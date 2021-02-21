@@ -52,7 +52,6 @@ export const LiveStreams: React.FC<LiveStreamsProps> = ({ account }) => {
         value={filter ?? ''}
       />
       <FilterList
-        stretched={true}
         filter={filterStreams({ filter, categoryId })}
         keyExtractor={prop('stream_id')}
         items={data}

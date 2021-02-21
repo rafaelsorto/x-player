@@ -31,22 +31,13 @@ export const PlayerLayout: React.FC<PlayerLayoutProps> = ({
         showPlayer
           ? {
               sm: '48px calc(50% - 48px - 16px) calc(50% - 16px)',
-              md: '48px calc(100% - 48px - 16px)',
             }
           : { sm: '48px calc(100% - 48px - 16px)' }
       }
-      templateColumns={
-        showPlayer ? { sm: '1fr', md: '3fr 2fr' } : { sm: '1fr' }
-      }
+      templateColumns="1fr"
       gap="16px"
     >
-      <PlayerSection
-        colSpan={showPlayer ? { sm: 1, md: 2 } : { sm: 1 }}
-        p={0}
-        px={4}
-        display="flex"
-        alignItems="center"
-      >
+      <PlayerSection p={0} px={4} display="flex" alignItems="center">
         <TopNavbar />
       </PlayerSection>
       {showPlayer && (
