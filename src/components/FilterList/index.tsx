@@ -12,8 +12,7 @@ export const FilterList = ({ filter, keyExtractor, items, Item }) => {
       {filteredItems.map((item) => (
         <WrapItem
           key={keyExtractor(item)}
-          flexBasis={{ base: '100%', md: '47%', lg: '32%', xl: '24%' }}
-          flexGrow={1}
+          flexBasis={{ base: '100%', md: '48.5%', lg: '32.5%', xl: '24.5%' }}
         >
           <Item item={item} />
         </WrapItem>

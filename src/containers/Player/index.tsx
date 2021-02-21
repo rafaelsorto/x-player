@@ -10,7 +10,8 @@ export const Player: React.FC = () => {
     <ReactPlayer
       url={media}
       controls={true}
-      playing={status === 'play'}
+      playing={false}
+      height="100%"
       width="100%"
     />
   ) : (

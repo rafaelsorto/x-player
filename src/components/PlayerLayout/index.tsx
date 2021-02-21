@@ -30,7 +30,7 @@ export const PlayerLayout: React.FC<PlayerLayoutProps> = ({
       templateRows={
         showPlayer
           ? {
-              sm: '48px calc(50% - 48px - 16px) calc(50% - 16px)',
+              sm: '48px calc(40% - 48px - 16px) calc(60% - 16px)',
             }
           : { sm: '48px calc(100% - 48px - 16px)' }
       }
