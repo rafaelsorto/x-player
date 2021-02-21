@@ -12,7 +12,7 @@ export const useNextQueryState = (key, initialState = '') => {
 
   const setValue = useCallback<SetValueType>(
     (newValue) => {
-      router.push({ query: { ...router.query, [key]: newValue } })
+      router.replace({ query: { ...router.query, [key]: newValue } })
     },
     [router.query]
   )
@@ -24,11 +24,11 @@ export const useNextQueryState = (key, initialState = '') => {
         query: { [key]: populatedState },
       } = router
       setInitialized(true)
-      router.push({
+      router.replace({
         query: { ...query, [key]: populatedState || initialState },
       })
     }
   }, [router.isReady])
 
-  return [initialized ? value : initialState, setValue] as const
+  return [initialized ? (value as string) : initialState, setValue] as const
 }

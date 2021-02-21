@@ -1,17 +1,38 @@
-import { Heading, Input, VStack } from '@chakra-ui/react'
+import { Box, Heading, Input, VStack } from '@chakra-ui/react'
 import { useNextQueryState } from 'src/hooks/generic/useNextQueryState'
 import { prop } from 'ramda'
 import React, { useCallback } from 'react'
 import { ErrorMessage, FilterList, Loading } from 'src/components'
 import { useLiveStreamCategories } from 'src/hooks/xtreamAPI/useLiveStreamCategories'
 import { filterCategories } from 'src/utils/filterCategories'
+import Link from 'next/link'
 
 interface LiveStreamCategoriesProps {
   account: any
 }
 
-const Item: React.FC<Category> = ({ category_name }) => (
-  <span>{category_name}</span>
+interface ItemProps {
+  item: Category
+}
+
+const Item: React.FC<ItemProps> = ({
+  item: { category_id, category_name },
+}) => (
+  <Link href={`/live/categories/${category_id}`}>
+    <Box
+      as="a"
+      backgroundColor="gray.100"
+      borderRadius="md"
+      mb={1}
+      p={2}
+      width="100%"
+      height="100%"
+      cursor="pointer"
+      _hover={{ backgroundColor: 'gray.200' }}
+    >
+      {category_name}
+    </Box>
+  </Link>
 )
 
 export const LiveStreamCategories: React.FC<LiveStreamCategoriesProps> = ({

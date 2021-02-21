@@ -3,7 +3,7 @@ import { RootState } from '../index'
 
 // Define a type for the slice state
 interface PlayerState {
-  status: 'idle' | 'loading'
+  status: 'idle' | 'play'
   media: string
 }
 
@@ -20,7 +20,7 @@ export const counterSlice = createSlice({
   reducers: {
     play: (state, action: PayloadAction<string>) => {
       state.media = action.payload
-      state.status = 'loading'
+      state.status = 'play'
     },
   },
 })

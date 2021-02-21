@@ -18,7 +18,7 @@ const LiveCategoriesPage: React.FC = () => {
 
   return account ? (
     <div>
-      <PlayerLayout>
+      <PlayerLayout showPlayer={false}>
         <div>
           <LiveStreamCategories account={account} />
         </div>

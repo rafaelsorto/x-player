@@ -1,10 +1,11 @@
 import React from 'react'
 import { TopNavbar } from 'src/components'
 import { Grid, GridItem } from '@chakra-ui/react'
-import { useSelector } from 'src/store/hooks'
-import { selectPlayer } from 'src/store/features/player'
+import { Player } from 'src/containers/Player'
 
-const Player = () => <div>Player</div>
+type PlayerLayoutProps = {
+  showPlayer: boolean
+}
 
 const PlayerSection = (props) => (
   <GridItem
@@ -19,28 +20,28 @@ const PlayerSection = (props) => (
   />
 )
 
-export const PlayerLayout: React.FC = ({ children }) => {
-  const { status } = useSelector(selectPlayer)
-  const playerIsIdle = status === 'idle'
-
+export const PlayerLayout: React.FC<PlayerLayoutProps> = ({
+  children,
+  showPlayer,
+}) => {
   return (
     <Grid
       h="100vh"
       templateRows={
-        playerIsIdle
-          ? { sm: '48px calc(100% - 48px - 16px)' }
-          : {
+        showPlayer
+          ? {
               sm: '48px calc(50% - 48px - 16px) calc(50% - 16px)',
               md: '48px calc(100% - 48px - 16px)',
             }
+          : { sm: '48px calc(100% - 48px - 16px)' }
       }
       templateColumns={
-        playerIsIdle ? { sm: '1fr' } : { sm: '1fr', md: '3fr 2fr' }
+        showPlayer ? { sm: '1fr', md: '3fr 2fr' } : { sm: '1fr' }
       }
       gap="16px"
     >
       <PlayerSection
-        colSpan={playerIsIdle ? { sm: 1 } : { sm: 1, md: 2 }}
+        colSpan={showPlayer ? { sm: 1, md: 2 } : { sm: 1 }}
         p={0}
         px={4}
         display="flex"
@@ -48,7 +49,7 @@ export const PlayerLayout: React.FC = ({ children }) => {
       >
         <TopNavbar />
       </PlayerSection>
-      {!playerIsIdle && (
+      {showPlayer && (
         <PlayerSection>
           <Player />
         </PlayerSection>
