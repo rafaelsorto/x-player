@@ -4,6 +4,8 @@ import { SignIn } from 'src/components/SignIn'
 import { auth } from 'src/clients/auth'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/dist/client/router'
+import { useEffect } from 'react'
+import { isNotNilOrEmpty } from 'ramda-adjunct'
 
 export const Home: React.FC = (): JSX.Element => {
   const toast = useToast()
@@ -17,7 +19,7 @@ export const Home: React.FC = (): JSX.Element => {
           JSON.stringify({ ...user_info, server: values.server }),
           { ...(values.rememberMe ? { expires: 30 } : {}) }
         )
-        router.push('/live')
+        router.push('/live/categories')
       } else {
         toast({
           position: 'top',
@@ -42,6 +44,13 @@ export const Home: React.FC = (): JSX.Element => {
       formikBag.setSubmitting(false)
     }
   }
+
+  useEffect(() => {
+    const account = Cookies.getJSON('x-player-account')
+    if (isNotNilOrEmpty(account)) {
+      router.push('/live/categories')
+    }
+  }, [])
 
   return (
     <>
