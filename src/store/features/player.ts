@@ -23,6 +23,7 @@ export const counterSlice = createSlice({
       state.status = 'play'
     },
     setIdle: (state) => {
+      state.media = ''
       state.status = 'idle'
     },
   },
