@@ -2,7 +2,7 @@ import { Box } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import Cookies from 'js-cookie'
 import { useDispatch } from 'src/store/hooks'
-import { play } from 'src/store/features/player'
+import { play, setIdle } from 'src/store/features/player'
 
 interface ItemProps {
   item: Stream
@@ -15,6 +15,7 @@ export const Item: React.FC<ItemProps> = ({ item: { name, stream_id } }) => {
   const dispatch = useDispatch()
 
   const handleClick = () => {
+    dispatch(setIdle())
     dispatch(play(`${server}/live/${username}/${password}/${stream_id}.m3u8`))
   }
 

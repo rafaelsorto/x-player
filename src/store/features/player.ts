@@ -22,10 +22,13 @@ export const counterSlice = createSlice({
       state.media = action.payload
       state.status = 'play'
     },
+    setIdle: (state) => {
+      state.status = 'idle'
+    },
   },
 })
 
-export const { play } = counterSlice.actions
+export const { play, setIdle } = counterSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectPlayer = (state: RootState): PlayerState => state.player
