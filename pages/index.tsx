@@ -14,7 +14,8 @@ export const Home: React.FC = (): JSX.Element => {
       if (user_info.status === 'Active') {
         Cookies.set(
           'x-player-account',
-          JSON.stringify({ ...user_info, server: values.server })
+          JSON.stringify({ ...user_info, server: values.server }),
+          { ...(values.rememberMe ? { expires: 30 } : {}) }
         )
         router.push('/live')
       } else {
@@ -33,7 +34,7 @@ export const Home: React.FC = (): JSX.Element => {
       toast({
         position: 'top',
         title: 'Failed to Login',
-        description: error.message,
+        description: 'Please try again later or verify your credentials',
         status: 'error',
         duration: 5000,
         isClosable: true,

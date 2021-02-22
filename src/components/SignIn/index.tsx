@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Checkbox,
   FormControl,
   FormLabel,
   Heading,
@@ -72,6 +73,15 @@ export const SignIn: React.FC<SignInProps> = ({ onSubmit }) => {
                         type="text"
                         {...field}
                       />
+                    </FormControl>
+                  )
+                }}
+              </Field>
+              <Field name="rememberMe">
+                {({ field }) => {
+                  return (
+                    <FormControl id="rememberMe">
+                      <Checkbox {...field}>Remember me</Checkbox>
                     </FormControl>
                   )
                 }}

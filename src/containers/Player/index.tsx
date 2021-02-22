@@ -13,6 +13,13 @@ export const Player: React.FC = () => {
       playing={false}
       height="100%"
       width="100%"
+      config={{
+        file: {
+          hlsOptions: {
+            maxBufferLength: 120,
+          },
+        },
+      }}
     />
   ) : (
     <div>React Player</div>
