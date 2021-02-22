@@ -2,6 +2,7 @@
 
 import { NextApiRequest, NextApiResponse } from 'next'
 import axios from 'axios'
+import { allowCors } from 'src/utils/api/allowCors'
 
 const handler = async (
   req: NextApiRequest,
@@ -36,4 +37,4 @@ const handler = async (
   }
 }
 
-export default handler
+export default allowCors(handler)
