@@ -8,7 +8,9 @@ interface ItemProps {
   item: Stream
 }
 
-export const Item: React.FC<ItemProps> = ({ item: { name, stream_id } }) => {
+export const Item: React.FC<ItemProps> = ({
+  item: { container_extension, name, stream_id, stream_type },
+}) => {
   const [{ server, username, password }] = useState(
     Cookies.getJSON('x-player-account')
   )
@@ -16,7 +18,11 @@ export const Item: React.FC<ItemProps> = ({ item: { name, stream_id } }) => {
 
   const handleClick = () => {
     dispatch(setIdle())
-    dispatch(play(`${server}/live/${username}/${password}/${stream_id}.m3u8`))
+    dispatch(
+      play(
+        `${server}/${stream_type}/${username}/${password}/${stream_id}.${container_extension}`
+      )
+    )
   }
 
   return (

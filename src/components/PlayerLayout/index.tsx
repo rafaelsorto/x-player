@@ -9,7 +9,7 @@ type PlayerLayoutProps = {
 
 const PlayerSection = (props) => (
   <GridItem
-    backgroundColor="white"
+    backgroundColor="#fafafa"
     borderRadius="md"
     boxShadow="md"
     maxHeight="100%"

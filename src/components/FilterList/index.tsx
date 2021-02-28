@@ -14,9 +14,7 @@ export const FilterList = ({ filter, keyExtractor, items, Item }) => {
       data-testid="filtered-items-container"
     >
       {filteredItems.map((item) => (
-        <Box key={keyExtractor(item)} p={1}>
-          <Item item={item} />
-        </Box>
+        <Item item={item} key={keyExtractor(item)} />
       ))}
     </Box>
   )

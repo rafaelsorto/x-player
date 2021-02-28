@@ -5,6 +5,7 @@ interface Category {
 }
 
 interface Stream {
+  container_extension: string
   num: number
   name: string
   stream_type: string

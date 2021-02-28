@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { PlayerLayout } from 'src/components/PlayerLayout'
 import Cookies from 'js-cookie'
 import { Loading } from 'src/components'
-import { LiveStreams } from 'src/containers/LiveStreams'
+import { VODStreams } from 'src/containers/VODStreams'
 
 const CategoryViewPage: React.FC = () => {
   const [account] = useState(Cookies.getJSON('x-player-account'))
@@ -19,7 +19,7 @@ const CategoryViewPage: React.FC = () => {
   return (
     <div>
       <PlayerLayout showPlayer={true}>
-        <LiveStreams account={account} />
+        <VODStreams account={account} />
       </PlayerLayout>
     </div>
   )

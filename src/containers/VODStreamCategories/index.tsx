@@ -3,11 +3,11 @@ import { useNextQueryState } from 'src/hooks/generic/useNextQueryState'
 import { prop } from 'ramda'
 import React, { useCallback } from 'react'
 import { ErrorMessage, FilterList, Loading } from 'src/components'
-import { useLiveStreamCategories } from 'src/hooks/xtreamAPI/useLiveStreamCategories'
+import { useVODStreamCategories } from 'src/hooks/xtreamAPI/useVODStreamCategories'
 import { filterCategories } from 'src/utils/filterCategories'
 import Link from 'next/link'
 
-interface LiveStreamCategoriesProps {
+interface VODStreamCategoriesProps {
   account: any
 }
 
@@ -18,7 +18,7 @@ interface ItemProps {
 const Item: React.FC<ItemProps> = ({
   item: { category_id, category_name },
 }) => (
-  <Link href={`/live/categories/${category_id}`}>
+  <Link href={`/vod/categories/${category_id}`}>
     <Box
       as="a"
       backgroundColor="gray.100"
@@ -33,12 +33,12 @@ const Item: React.FC<ItemProps> = ({
   </Link>
 )
 
-export const LiveStreamCategories: React.FC<LiveStreamCategoriesProps> = ({
+export const VODStreamCategories: React.FC<VODStreamCategoriesProps> = ({
   account,
 }) => {
   const { username, password, server } = account
   const [filter, setFilter] = useNextQueryState('filter')
-  const { data, isLoading, error } = useLiveStreamCategories({
+  const { data, isLoading, error } = useVODStreamCategories({
     username,
     password,
     server,
@@ -52,20 +52,20 @@ export const LiveStreamCategories: React.FC<LiveStreamCategoriesProps> = ({
   )
 
   if (isLoading) {
-    return <Loading message="Loading Live Stream Categories" />
+    return <Loading message="Loading VOD Categories" />
   }
 
   if (error) {
     return (
       <ErrorMessage>
-        Failed to get Live Stream Categories. Please reload this page.
+        Failed to get VOD Categories. Please reload this page.
       </ErrorMessage>
     )
   }
 
   return (
     <VStack spacing="4" align="stretch">
-      <Heading color="blue.700">Live Categories</Heading>
+      <Heading color="blue.700">VOD Categories</Heading>
       <Input
         placeholder="Search Categories"
         onChange={handleFilter}

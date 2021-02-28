@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { Loading, Redirect } from 'src/components'
 import Cookies from 'js-cookie'
 import { PlayerLayout } from 'src/components/PlayerLayout'
-import { LiveStreamCategories } from 'src/containers/LiveStreamCategories'
+import { VODStreamCategories } from 'src/containers/VODStreamCategories'
 import { useDispatch } from 'src/store/hooks'
 import { setIdle } from 'src/store/features/player'
 
-const LiveCategoriesPage: React.FC = () => {
+const VODCategoriesPage: React.FC = () => {
   const [account] = useState(Cookies.getJSON('x-player-account'))
   const [loaded, setLoaded] = useState(false)
   const dispatch = useDispatch()
@@ -24,7 +24,7 @@ const LiveCategoriesPage: React.FC = () => {
     <div>
       <PlayerLayout showPlayer={false}>
         <div>
-          <LiveStreamCategories account={account} />
+          <VODStreamCategories account={account} />
         </div>
       </PlayerLayout>
     </div>
@@ -33,4 +33,4 @@ const LiveCategoriesPage: React.FC = () => {
   )
 }
 
-export default LiveCategoriesPage
+export default VODCategoriesPage
