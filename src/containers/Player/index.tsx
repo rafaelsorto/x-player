@@ -22,6 +22,6 @@ export const Player: React.FC = () => {
       }}
     />
   ) : (
-    <div>React Player</div>
+    <div>Click to play</div>
   )
 }

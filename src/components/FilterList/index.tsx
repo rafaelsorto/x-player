@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 import { filter as rFilter } from 'ramda'
-import { Wrap, WrapItem } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 
 export const FilterList = ({ filter, keyExtractor, items, Item }) => {
   const filteredItems: any = useMemo((): any => {
@@ -8,15 +8,16 @@ export const FilterList = ({ filter, keyExtractor, items, Item }) => {
   }, [filter, items])
 
   return (
-    <Wrap>
+    <Box
+      display="grid"
+      gridTemplateColumns="repeat(auto-fill, minmax(300px, 1fr))"
+      data-testid="filtered-items-container"
+    >
       {filteredItems.map((item) => (
-        <WrapItem
-          key={keyExtractor(item)}
-          flexBasis={{ base: '100%', md: '48.5%', lg: '32.5%', xl: '24.5%' }}
-        >
+        <Box key={keyExtractor(item)} p={1}>
           <Item item={item} />
-        </WrapItem>
+        </Box>
       ))}
-    </Wrap>
+    </Box>
   )
 }

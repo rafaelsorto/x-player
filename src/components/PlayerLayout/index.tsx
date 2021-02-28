@@ -30,22 +30,33 @@ export const PlayerLayout: React.FC<PlayerLayoutProps> = ({
       templateRows={
         showPlayer
           ? {
-              sm: '48px calc(40% - 48px - 8px) calc(60% - 8px)',
+              sm: '48px calc(60% - 48px - 8px) calc(40% - 8px)',
             }
           : { sm: '48px calc(100% - 48px - 8px)' }
       }
-      templateColumns="1fr"
+      templateColumns={{ sm: '1fr', md: '3fr 2fr' }}
       gap="8px"
     >
-      <PlayerSection p={0} px={4} display="flex" alignItems="center">
+      <PlayerSection
+        p={0}
+        px={4}
+        display="flex"
+        alignItems="center"
+        colSpan={{ md: '2' }}
+      >
         <TopNavbar />
       </PlayerSection>
       {showPlayer && (
-        <PlayerSection>
+        <PlayerSection rowSpan={{ md: '2' }}>
           <Player />
         </PlayerSection>
       )}
-      <PlayerSection>{children}</PlayerSection>
+      <PlayerSection
+        colSpan={{ md: showPlayer ? '1' : '2' }}
+        rowSpan={{ md: showPlayer ? '2' : '1' }}
+      >
+        {children}
+      </PlayerSection>
     </Grid>
   )
 }
