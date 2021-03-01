@@ -9,6 +9,10 @@ export const filterStreams = ({
 }) =>
   compose(
     ({ name, category_id }) => {
+      if (categoryId === 'all') {
+        return name.includes(toLower(filter ?? ''))
+      }
+
       return category_id === categoryId && name.includes(toLower(filter ?? ''))
     },
     evolve({ name: toLower }),

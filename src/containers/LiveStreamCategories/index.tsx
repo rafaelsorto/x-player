@@ -74,7 +74,10 @@ export const LiveStreamCategories: React.FC<LiveStreamCategoriesProps> = ({
       <FilterList
         filter={filterCategories(filter ?? '')}
         keyExtractor={prop('category_id')}
-        items={data}
+        items={[
+          { category_id: 'all', category_name: 'All Live Streams' },
+          ...data,
+        ]}
         Item={Item}
       />
     </VStack>

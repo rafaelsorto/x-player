@@ -31,6 +31,14 @@ export const LiveStreams: React.FC<LiveStreamsProps> = ({ account }) => {
   const { categoryId }: { categoryId?: string } = router.query
 
   const category = useMemo(() => {
+    if (categoryId === 'all') {
+      return {
+        category_id: '-1',
+        category_name: 'All Live Streams',
+        parent_id: 0,
+      }
+    }
+
     return find(propEq('category_id', categoryId ?? ''))(
       categoryData ?? []
     ) as Category

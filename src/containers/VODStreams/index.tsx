@@ -31,6 +31,14 @@ export const VODStreams: React.FC<VODStreamsProps> = ({ account }) => {
   const { categoryId }: { categoryId?: string } = router.query
 
   const category = useMemo(() => {
+    if (categoryId === 'all') {
+      return {
+        category_id: '-1',
+        category_name: 'All VOD Streams',
+        parent_id: 0,
+      }
+    }
+
     return find(propEq('category_id', categoryId ?? ''))(
       categoryData ?? []
     ) as Category
@@ -44,13 +52,13 @@ export const VODStreams: React.FC<VODStreamsProps> = ({ account }) => {
   )
 
   if (isLoading) {
-    return <Loading message="Loading Live Streams" />
+    return <Loading message="Loading VOD Streams" />
   }
 
   if (error) {
     return (
       <ErrorMessage>
-        Failed to get Live Streams. Please reload this page.
+        Failed to get VOD Streams. Please reload this page.
       </ErrorMessage>
     )
   }

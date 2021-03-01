@@ -74,7 +74,10 @@ export const VODStreamCategories: React.FC<VODStreamCategoriesProps> = ({
       <FilterList
         filter={filterCategories(filter ?? '')}
         keyExtractor={prop('category_id')}
-        items={data}
+        items={[
+          { category_id: 'all', category_name: 'All VOD Streams' },
+          ...data,
+        ]}
         Item={Item}
       />
     </VStack>
