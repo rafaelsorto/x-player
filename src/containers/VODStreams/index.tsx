@@ -1,6 +1,6 @@
 import { Heading, Input, VStack } from '@chakra-ui/react'
 import { useNextQueryState } from 'src/hooks/generic/useNextQueryState'
-import { find, prop, propEq } from 'ramda'
+import { filter as rFilter, find, prop, propEq } from 'ramda'
 import React, { useCallback, useMemo } from 'react'
 import { ErrorMessage, FilterList, Loading } from 'src/components'
 import { filterStreams } from 'src/utils/filterStreams'
@@ -44,6 +44,16 @@ export const VODStreams: React.FC<VODStreamsProps> = ({ account }) => {
     ) as Category
   }, [categoryData])
 
+  const streamsByCategory: Stream[] = useMemo(() => {
+    return rFilter((s: Stream): boolean => {
+      if (categoryId === 'all') {
+        return true
+      }
+
+      return s.category_id === categoryId
+    })(data ?? []) as Stream[]
+  }, [categoryId, data])
+
   const handleFilter = useCallback(
     (e) => {
       setFilter(e.target.value)
@@ -72,9 +82,9 @@ export const VODStreams: React.FC<VODStreamsProps> = ({ account }) => {
         value={filter ?? ''}
       />
       <FilterList
-        filter={filterStreams({ filter, categoryId })}
+        filter={filterStreams({ filter })}
         keyExtractor={prop('stream_id')}
-        items={data}
+        items={streamsByCategory}
         Item={Item}
       />
     </VStack>

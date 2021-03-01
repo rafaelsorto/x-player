@@ -1,20 +1,10 @@
-import { compose, evolve, pick, toLower } from 'ramda'
+import { compose, prop, toLower } from 'ramda'
 
-export const filterStreams = ({
-  filter,
-  categoryId,
-}: {
-  filter: string
-  categoryId: string
-}) =>
+export const filterStreams = ({ filter }: { filter: string }) =>
   compose(
-    ({ name, category_id }) => {
-      if (categoryId === 'all') {
-        return name.includes(toLower(filter ?? ''))
-      }
-
-      return category_id === categoryId && name.includes(toLower(filter ?? ''))
+    (name) => {
+      return name.includes(toLower(filter ?? ''))
     },
-    evolve({ name: toLower }),
-    pick(['name', 'category_id'])
+    toLower,
+    prop('name')
   )
